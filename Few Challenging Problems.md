@@ -1,6 +1,6 @@
-Certainly! Here are a few challenging problems along with the algorithms that might be useful to know when attempting them:
-
-### Challenging Problems:
+# Here are a few challenging problems along with the algorithms that might be useful to know when attempting them:
+## Challenging Problems:
+---
 
 1. **Problem: Longest Increasing Subsequence (LIS)**
    - Algorithm: Dynamic Programming (DP)
@@ -32,7 +32,8 @@ Certainly! Here are a few challenging problems along with the algorithms that mi
 10. **Problem: Maximum Bipartite Matching (Hopcroft-Karp Algorithm)**
     - Algorithm: Hopcroft-Karp Algorithm for finding maximum matching in a bipartite graph.
 
-### Algorithms to Learn:
+## Algorithms to Learn:
+---
 
 1. **Dynamic Programming (DP):**
    - Understand the basic principles of dynamic programming and practice solving problems that involve optimal substructure and overlapping subproblems.
