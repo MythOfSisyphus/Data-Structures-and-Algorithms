@@ -1,11 +1,7 @@
 '''
-Some sorting algorithms like insertion sort, merge sort, quick sort, collection sort.
-'''
-
-A = [11, 5, 1, 12, 0]
-
-'''
+-------------------------
 Insertion sort algorithm:
+-------------------------
 In this sorting algorthm we compare the elements to all of its previous elements.
 for example to sort 'A' we'll first start with index 1 because here we assume that first element 
 is already sorted (why this? you'll get this soon :)) then we'll compare element at index 1 i.e. 5
@@ -31,5 +27,15 @@ def insertionsort(array):
 
         array[j+1] = key
 
+# Execution
+A = [11, 5, 1, 12, 0]
 insertionsort(A)
 print(A)
+
+
+'''
+-------------------------------------------------------------------
+Shell Sort:
+-----------
+Shell sort is a generalization of Insetion sort.
+'''
