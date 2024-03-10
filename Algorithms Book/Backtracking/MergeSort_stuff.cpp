@@ -2,34 +2,58 @@
 
 using namespace std;
 
-typedef vector<int> arr;
+void Merge(int A[], int p, int q, int r){
+    int n1 = q - p + 1;
+    int n2 = r - q;
+
+    int L[n1];
+    int M[n2];
+
+    for(int i=0; i<n1; i++){
+        L[i] = A[p+i];
+    }
+
+    for(int i=0; i<n2; i++){
+        M[i] = A[q+1+i];
+    }
+
+    int i=0, j=0, k=p;
+    while(i<n1 && j<n2){
+        if(L[i] <= M[j]){
+            A[k] = L[i];
+            i++;
+        }
+
+        else{
+            A[k] = M[j];
+            j++;
+        }
+        k++;
+    }
+
+    while(i<n1){
+        A[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while(j<n2){
+        A[k] = M[j];
+        j++;
+        k++;
+    }
+}
+
+void MergeSort(int A[], int left, int right){
+    
+}
+
 
 int main(){
 
-    arr one {3, 27, 38, 43};
-    arr :: iterator it;
-    arr two {9, 10, 82};
-    arr three(7, 0);
+    int three[] = {3, 27, 38, 43, 9, 10, 82};
 
-    for(int i=0; i<4; i++){
-        int temp = one[i];
-        one[i] = one[3];
-        one[3] = temp;
-    }
-
-    for(it = one.begin(); it != one.end(); it++){
-        cout<<*it<<" ";
-    }
-
-    int index = 0;
-    while(one[index] < two[index]){
-        three[index] = one[index];
-        index+= 1;
-    }
-
-    
-
-    
+    int four[] = {10, 0, -2, 11, -3, 9, 4, 6};
 
     return 0;
 }
