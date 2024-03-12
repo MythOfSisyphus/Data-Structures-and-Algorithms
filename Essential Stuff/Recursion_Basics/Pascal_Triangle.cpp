@@ -15,29 +15,72 @@ Each term in each row is the coefficient of (x+y)^n
 
 using namespace std;
 
-typedef vector<int> X;
+typedef vector<int> X; // why X? As I love to call vector as X :)
 
-int JustChecking(int n){
-        
+/*
+The following function can give you (n+1)th of a Pascal Triangle
+if you give it nth row. 
+There is nothing to explain because it is apparently clear, that it sets 1
+at both places start and end. Then does job in between.
+*/
+X JustChecking(X &V){
+    X uv;
+    for(int i=0; i<(V.size()+1); i++){
+        if(i==0 || i==V.size()){
+            uv.push_back(1);
+        }
+        else{
+            uv.push_back(V[i-1] + V[i]);
+        }
+    }
+
+    return uv;
 }
+
+/*
+The following function uses `JustChecking` to recursively update the
+value of `vector E`.
+'X E = {1}' means if user gives you value of E then well, otherwise take
+{1} as the base case and start.
+*/
+X PascalTriangle(int n, X E = {1}){
+    if(n == 0){
+        return E;
+    }
+    else{
+        X PVect = JustChecking(E);
+        return PascalTriangle(n-1, PVect);
+    }
+}
+
 
 int main(){
 
-    X one {1, 5, 10, 10, 5, 1};
-    X two;
+    // vector iterator
     X :: iterator it;
 
-    for(int i=0; i<6; i++){
-        if((i == 0) || (i == 5)){
-            two.push_back(1);
-        }
-        else{
-            two.push_back(one[i-1] + one[i]);
-        }
-    };
+    /*
+    The below commented code is just for checking JustChecking function.
+    */ 
+    // X one {1};
 
-    for(it = two.begin(); it != two.end(); it++){
+    // X lucky = JustChecking(one);
+    // X honey = JustChecking(lucky);
+
+    // for(it = lucky.begin(); it != lucky.end(); it++){
+    //     cout<<*it<<" ";
+    // }
+    // cout<<"\n";
+    // for(it = honey.begin(); it != honey.end(); it++){
+    //     cout<<*it<<" ";
+    
+
+    // Now comes the interesting part.
+    X pig = PascalTriangle(8);
+    for(it = pig.begin(); it != pig.end(); it++){
         cout<<*it<<" ";
     }
+
+
     return 0;
 }
