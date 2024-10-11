@@ -8,79 +8,53 @@ Everyone knows what Pascal Triangle is, in the case you don't then
   1  4   6  4  1           for n=4
 1  5  10  10  5  1         for n=5
 
-Each term in each row is the coefficient of (x+y)^n
+Each term in each row is the coefficient of (vector<int>+y)^n
 */
 
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
 
 using namespace std;
 
-typedef vector<int> X; // why X? As I love to call vector as X :)
+// Not very efficient way to get nth row of a pascal triangle,
+vector<int> PascalTriangle_Iterative(const int& n){
+    vector<int> result {1};
 
-/*
-The following function can give you (n+1)th of a Pascal Triangle
-if you give it nth row. 
-There is nothing to explain because it is apparently clear, that it sets 1
-at both places start and end. Then does job in between.
-*/
-X JustChecking(X &V){
-    X uv;
-    for(int i=0; i<(V.size()+1); i++){
-        if(i==0 || i==V.size()){
-            uv.push_back(1);
+    for(int k=0; k<n; k++){
+        vector<int> next_row(result.size()+1, 0);
+        for(int i=0; i<=result.size(); i++){
+            if(i==0 || i==result.size()) next_row[i] = 1;
+            else{
+                next_row[i] = result[i] + result[i-1];
+            }
         }
-        else{
-            uv.push_back(V[i-1] + V[i]);
-        }
+        // updating result
+        result = next_row;
     }
-
-    return uv;
+    return result;
 }
 
-/*
-The following function uses `JustChecking` to recursively update the
-value of `vector E`.
-'X E = {1}' means if user gives you value of E then well, otherwise take
-{1} as the base case and start.
-*/
-X PascalTriangle(int n, X E = {1}){
-    if(n == 0){
-        return E;
+// An efficient way to generate the nth row of pascal triangle.
+// long long would not be sufficient for large values of n as we know that binomial
+// coefficent grows very quickly
+vector<long long> PascalTriangle_Optimized(const int& n){
+    vector<long long> result(n+1, 1); // Intialize all elements as 1
+
+    for(int i=1; i<n; i++){
+        result[i] = result[i-1] * (n-i+1)/i; // Use previous element to get the next one.
     }
-    else{
-        X PVect = JustChecking(E);
-        return PascalTriangle(n-1, PVect);
-    }
+
+    return result;
 }
 
 
 int main(){
 
-    // vector iterator
-    X :: iterator it;
+    vector<long long> ex_20 = PascalTriangle_Optimized(20);
 
-    /*
-    The below commented code is just for checking JustChecking function.
-    */ 
-    // X one {1};
-
-    // X lucky = JustChecking(one);
-    // X honey = JustChecking(lucky);
-
-    // for(it = lucky.begin(); it != lucky.end(); it++){
-    //     cout<<*it<<" ";
-    // }
-    // cout<<"\n";
-    // for(it = honey.begin(); it != honey.end(); it++){
-    //     cout<<*it<<" ";
-    
-
-    // Now comes the interesting part.
-    X pig = PascalTriangle(8);
-    for(it = pig.begin(); it != pig.end(); it++){
-        cout<<*it<<" ";
+    for(const long long& elem : ex_20){
+        cout<<elem<<" ";
     }
-
 
     return 0;
 }
