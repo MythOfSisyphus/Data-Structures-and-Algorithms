@@ -1,47 +1,32 @@
 /*
 Write a recursive function to check if a given string is a palindrome.
-0 1 2 3 4
 */
-
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
 
 using namespace std;
 
-bool isPalindrome(string S){
-    int S_length = S.length();
-
-    if(S_length % 2 == 0){
-        for(int i=0; i<S_length/2; i++){
-            if(S[i] != S[S_length-(i+1)])
-                return false;
+bool isPalindrom_optimized(const string& S){
+    int left = 0;
+    int right = S.size()-1;
+    while(left < right){
+        if(S[left] == S[right]){
+            left++;
+            right--;
+        }
+        else{
+            return false;
         }
     }
-
-    if(S_length % 2 == 1){
-        for(int i=0; i<(S_length/2 - 1); i++){
-            if(S[i] != S[S_length-(i+1)])
-                return false;
-        }
-    }
-
     return true;
 }
 
 int main(){
 
-    string name = "lucky";
-
-    // cout<<name<<endl;
-    // cout<<name[1]<<endl;
-    // int n = name.length();
-    // cout<<n<<endl;
-    // cout<<name;
-
-    cout<<isPalindrome(name);
-    cout<<isPalindrome("Printf");
-    cout<<isPalindrome("AKA");
-    cout<<isPalindrome("racecar");
-    cout<<isPalindrome("Palindrome");
-
+    cout<<boolalpha;
+    cout<<isPalindrom_optimized("copier")<<endl;
+    cout<<isPalindrom_optimized("racecar")<<endl;
+    cout<<isPalindrom_optimized("nayan")<<endl;
+    
     return 0;
 }
